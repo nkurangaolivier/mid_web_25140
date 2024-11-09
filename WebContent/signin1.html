@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Adventist University of Central Africa</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <img alt="auca logo" class="logo" src="images/auca logo.png"/>
+            <h1>AUCA Library Management System</h1>
+            <p>Welcome! Please enter your details.</p>
+
+            <!-- Error Message Display -->
+            <div id="errorMessage" class="error-message"></div>
+
+            <form action="SignInServlet" method="post" onsubmit="setSignInCookies()">
+                <div class="input-group">
+                    <label for="username">Enter your Name</label>
+                    <input id="username" name="username" type="text" required/>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" required/>
+                </div>
+                <div class="forgot-password">
+                    <a href="#" onclick="openForgetPasswordModal()">Forgot password?</a>
+                </div>
+                <button type="submit">Sign In</button>
+            </form>
+            <div class="signup-link">
+                <p>Don't have an account? <a href="register.jsp">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Display error message if provided in query string
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            if (error) {
+                document.getElementById("errorMessage").textContent = decodeURIComponent(error);
+            }
+        });
+    </script>
+</body>
+</html>
